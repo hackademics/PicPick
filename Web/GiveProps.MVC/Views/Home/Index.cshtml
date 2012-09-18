@@ -1,0 +1,50 @@
+﻿@using GiveProps.MVC.Models;
+@model GiveProps.MVC.Models.ScrapedPage
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Model == null)
+{
+    <div>no page</div>
+}
+
+@if (Model != null)
+{
+    
+<table width="100%" cellpadding="5" cellspacing="0">
+    <tr>
+        <td valign="top">
+        Thumbnail:
+        <div style="height:140px;width:600px;overflow-x:scroll;background-color:#333;">
+        <table cellpadding="5">
+        <tr>
+        @if (Model.Images != null && Model.Images.Count > 0)
+        {
+            foreach (var obj in @Model.Images)
+            {
+                <td><div style="width:100px;height:100px;padding:1px;background-color:#fff;border:solid 1px #ccc;">@Html.Raw(@obj.Thumbnail)</div></td>
+            }
+        }
+        </tr>
+        </table>
+        </div>
+        <p />
+        Title:<br />
+        <input type="text" value="@Model.Title" size="92" style="padding:5px;" />
+        <p />
+        Description:<br />
+        <textarea name="txtDescription" cols="70" rows="6" style="padding:10px;">@Model.Description</textarea>
+        <p />
+        Details:<br />
+        <div>
+        Host: @Model.Host
+        <br />
+        Source: @Model.URL
+        </div>
+        </td>
+    </tr>
+</table>
+    
+} 
